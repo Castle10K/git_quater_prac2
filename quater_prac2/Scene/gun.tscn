@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cltd7jcyn2sb2"]
+
+[ext_resource type="PackedScene" uid="uid://x8a0ifd5ysmt" path="res://3DModel/gun/gun_anim_set.glb" id="1_qaof2"]
+
+[node name="gun" instance=ExtResource("1_qaof2")]
+
+[node name="Marker3D" type="Marker3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0741669, 0.500467)

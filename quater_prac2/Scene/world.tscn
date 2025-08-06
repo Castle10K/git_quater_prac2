@@ -1,4 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbmwva85hf3he"]
+[gd_scene load_steps=9 format=3 uid="uid://cbmwva85hf3he"]
+
+[ext_resource type="PackedScene" uid="uid://b4xhv0axupn2i" path="res://Scene/player.tscn" id="1_emx41"]
+[ext_resource type="PackedScene" uid="uid://b45dwpo7ld58q" path="res://Scene/camera.tscn" id="2_dlwip"]
+[ext_resource type="PackedScene" uid="uid://ck7vnpfxunl3t" path="res://Scene/target_effect.tscn" id="3_ejll3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xtl80"]
 sky_top_color = Color(0.363519, 0.444109, 0.622495, 1)
@@ -134,3 +138,9 @@ mesh = SubResource("CylinderMesh_xtl80")
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7, 1.5, -18.3)
 mesh = SubResource("BoxMesh_xtl80")
+
+[node name="Player" parent="." instance=ExtResource("1_emx41")]
+
+[node name="Camera" parent="." instance=ExtResource("2_dlwip")]
+
+[node name="TargetEffect" parent="." instance=ExtResource("3_ejll3")]

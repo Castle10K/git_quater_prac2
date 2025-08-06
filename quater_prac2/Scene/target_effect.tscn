@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck7vnpfxunl3t"]
+
+[ext_resource type="Shader" uid="uid://7ydq5bhqs4wg" path="res://Shader/target_effect.gdshader" id="1_u3w8f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rblqk"]
+render_priority = 0
+shader = ExtResource("1_u3w8f")
+shader_parameter/base_col = Color(0.390356, 0.845075, 1, 1)
+shader_parameter/attack_col = Color(1, 0.529957, 0.497267, 1)
+shader_parameter/color_power = 15.0
+shader_parameter/factor = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_tgomt"]
+material = SubResource("ShaderMaterial_rblqk")
+radius = 0.4
+height = 0.8
+
+[node name="TargetEffect" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_tgomt")
