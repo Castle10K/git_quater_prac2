@@ -1,6 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cbmwva85hf3he"]
 
 [ext_resource type="PackedScene" uid="uid://b4xhv0axupn2i" path="res://Scene/player.tscn" id="1_emx41"]
+[ext_resource type="PackedScene" uid="uid://bv6f2ibn4o6l7" path="res://3DModel/container/container.tscn" id="1_scul4"]
 [ext_resource type="PackedScene" uid="uid://b45dwpo7ld58q" path="res://Scene/camera.tscn" id="2_dlwip"]
 [ext_resource type="PackedScene" uid="uid://ck7vnpfxunl3t" path="res://Scene/target_effect.tscn" id="3_ejll3"]
 
@@ -25,16 +26,13 @@ glow_enabled = true
 [sub_resource type="CylinderMesh" id="CylinderMesh_xtl80"]
 height = 1.2
 
-[sub_resource type="BoxMesh" id="BoxMesh_xtl80"]
-size = Vector3(4, 3, 10)
-
 [node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dlwip")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 2.9, 0)
+transform = Transform3D(0.707107, 0.612373, -0.353553, -9.8385e-09, 0.5, 0.866025, 0.707107, -0.612372, 0.353553, 0, 2.9, 0)
 light_color = Color(0.956863, 0.956863, 0.815686, 1)
 shadow_enabled = true
 directional_shadow_blend_splits = true
@@ -135,9 +133,20 @@ mesh = SubResource("CylinderMesh_xtl80")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2091, 0.6, -20.6704)
 mesh = SubResource("CylinderMesh_xtl80")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7, 1.5, -18.3)
-mesh = SubResource("BoxMesh_xtl80")
+[node name="container" parent="Mesh" instance=ExtResource("1_scul4")]
+transform = Transform3D(0.993657, 0, -0.112458, 0, 1, 0, 0.112458, 0, 0.993657, -6.86796, 0, -20.1402)
+
+[node name="container2" parent="Mesh" instance=ExtResource("1_scul4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.94899, -4.76837e-07, -22.3623)
+
+[node name="container4" parent="Mesh" instance=ExtResource("1_scul4")]
+transform = Transform3D(-0.0432881, 0, 0.999063, 0, 1, 0, -0.999063, 0, -0.0432881, -3.52373, 2.6, -22.1465)
+
+[node name="container3" parent="Mesh" instance=ExtResource("1_scul4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.05101, -4.76837e-07, -22.3623)
+
+[node name="container5" parent="Mesh" instance=ExtResource("1_scul4")]
+transform = Transform3D(0.99292, 0, 0.118785, 0, 1, 0, -0.118785, 0, 0.99292, 23.2373, 4.76837e-07, -21.2199)
 
 [node name="Player" parent="." instance=ExtResource("1_emx41")]
 

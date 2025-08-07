@@ -3,7 +3,7 @@ extends CharacterBody3D
 #이동 변수
 var input_dir : Vector2
 var direction : Vector3
-const SPEED : float = 8.0
+const SPEED : float = 7.0
 var accel : float = 10.0
 
 #쳐다보기 변수
@@ -54,12 +54,11 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			if !attack_mode:
-				attack_mode = true
-				await get_tree().create_timer(3.0).timeout # 코루틴 ? 병렬처리인가 ? 뭔지 알아볼 필요 있음
-				attack_mode = false
+			attack_mode = true
+		if Input.is_action_just_released("shoot"):
+			await get_tree().create_timer(3.0).timeout # 코루틴 ? 병렬처리인가 ? 뭔지 알아볼 필요 있음
+			attack_mode = false
 				
-			
 
 ###############################
 ########## 기능 함수들 ##########
