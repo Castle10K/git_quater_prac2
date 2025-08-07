@@ -15,9 +15,9 @@ void vertex() {
 
 void fragment() {
 	vec3 final_col = vec3(1.0);
-	
+
 	vec3 mix_col = mix(base_col, attack_col, factor);
-	
+
 	float fresnel = pow((1.0 - dot(VIEW, NORMAL)),3.0);
 	ALBEDO = mix_col * color_power;
 	ALPHA = fresnel;
