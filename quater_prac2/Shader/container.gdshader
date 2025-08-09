@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode depth_prepass_alpha;
 
 uniform sampler2D Base_col;
 uniform sampler2D col_mask;
@@ -13,6 +14,7 @@ void vertex() {
 
 void fragment() {
 	vec3 albedo = texture(Base_col, UV).rgb;
+	float alpha = texture(Base_col, UV).a;
 	float mask_col = texture(col_mask, UV).r;
 	vec3 arm = texture(ARM, UV).rgb;
 	vec4 normal = texture(Normal, UV);
@@ -20,6 +22,7 @@ void fragment() {
 	vec3 albedo_painter = mix(albedo * color_hint, albedo * color_hint2, mask_col);
 	
 	ALBEDO = albedo_painter;
+	ALPHA = alpha;
 	AO = arm.r;
 	ROUGHNESS = arm.g;
 	METALLIC = arm.b;
