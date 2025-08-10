@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbmwva85hf3he"]
+[gd_scene load_steps=21 format=3 uid="uid://cbmwva85hf3he"]
 
 [ext_resource type="PackedScene" uid="uid://b4xhv0axupn2i" path="res://Scene/player.tscn" id="1_emx41"]
 [ext_resource type="Texture2D" uid="uid://fe3pauenmlp5" path="res://GlobalTexture/moon_04_diff_2k.png" id="1_ol2hl"]
@@ -8,7 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://ck7vnpfxunl3t" path="res://Scene/target_effect.tscn" id="3_ejll3"]
 [ext_resource type="Texture2D" uid="uid://ckpnibv5w0bqd" path="res://GlobalTexture/moon_04_nor_gl_2k.png" id="3_h7cfj"]
 [ext_resource type="PackedScene" uid="uid://gih4gvdtwtrd" path="res://3DModel/fense/fence.tscn" id="5_ddf65"]
+[ext_resource type="PackedScene" uid="uid://cec4dhm6kr5yi" path="res://3DModel/container/container2.tscn" id="5_s81y4"]
 [ext_resource type="PackedScene" uid="uid://c1ovh4in2pows" path="res://3DModel/traffic_cone/traffic_cone.tscn" id="6_h7cfj"]
+[ext_resource type="PackedScene" uid="uid://m21krbdv8k0f" path="res://3DModel/scaffold/pipe_scaffold_ladder.tscn" id="7_y56vo"]
+[ext_resource type="PackedScene" uid="uid://c8nal3lrwx81s" path="res://3DModel/scaffold/pipe_scaffold_road.tscn" id="8_0gfnl"]
+[ext_resource type="PackedScene" uid="uid://bkaiwa1l7og18" path="res://3DModel/scaffold_cloth/cloth_2.tscn" id="8_6a5p4"]
+[ext_resource type="PackedScene" uid="uid://bvflacs1ca14p" path="res://3DModel/scaffold/pipe_scaffold_downstair.tscn" id="9_kufhj"]
+[ext_resource type="PackedScene" uid="uid://63g1kixtcvgd" path="res://3DModel/scaffold_cloth/cloth_1.tscn" id="11_a6mvv"]
+[ext_resource type="PackedScene" uid="uid://b755ijfumdr1p" path="res://3DModel/drum/drum.tscn" id="11_kufhj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xtl80"]
 sky_top_color = Color(0.363519, 0.444109, 0.622495, 1)
@@ -41,9 +48,6 @@ normal_texture = ExtResource("3_h7cfj")
 ao_enabled = true
 ao_texture = ExtResource("2_ddf65")
 uv1_scale = Vector3(15, 15, 15)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_xtl80"]
-height = 1.2
 
 [node name="World" type="Node3D"]
 
@@ -115,31 +119,7 @@ transform = Transform3D(-0.999878, 0, 0.01562, 0, 1, 0, -0.01562, 0, -0.999878, 
 [node name="crate8" type="CSGBox3D" parent="CSG"]
 transform = Transform3D(-0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, -0.939693, 21.5535, 0.6, 21.7012)
 
-[node name="container2" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, -20.5531, 1.1, 18.484)
-size = Vector3(6, 2.5, 2)
-
-[node name="container3" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, -20.5531, 1.1, 21.284)
-size = Vector3(6, 2.5, 2)
-
-[node name="container" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, -20.5531, 1.1, 15.684)
-size = Vector3(6, 2.5, 2)
-
 [node name="Mesh" type="Node3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0639, 0.6, -20.5665)
-mesh = SubResource("CylinderMesh_xtl80")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2923, 0.6, -21.9918)
-mesh = SubResource("CylinderMesh_xtl80")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2091, 0.6, -20.6704)
-mesh = SubResource("CylinderMesh_xtl80")
 
 [node name="container7" type="Node3D" parent="Mesh"]
 
@@ -150,22 +130,31 @@ transform = Transform3D(0.993657, 0, -0.112458, 0, 1, 0, 0.112458, 0, 0.993657, 
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.94899, -4.76837e-07, -22.3623)
 
 [node name="container4" parent="Mesh/container7" instance=ExtResource("1_scul4")]
-transform = Transform3D(-0.146566, 0, 0.989201, 0, 1, 0, -0.989201, 0, -0.146566, -4.23666, 2.6, -21.9721)
+transform = Transform3D(-0.146566, 0, 0.989201, 0, 1, 0, -0.989201, 0, -0.146566, 0.901258, 2.6, -22.3565)
 
 [node name="container3" parent="Mesh/container7" instance=ExtResource("1_scul4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.05101, -4.76837e-07, -22.3623)
 
 [node name="container5" parent="Mesh/container7" instance=ExtResource("1_scul4")]
-transform = Transform3D(0.99292, 0, 0.118785, 0, 1, 0, -0.118785, 0, 0.99292, 23.2373, 4.76837e-07, -21.2199)
+transform = Transform3D(0.999495, 0, 0.0317943, 0, 1, 0, -0.0317943, 0, 0.999495, 22.7373, 4.76837e-07, -21.2199)
 
 [node name="container6" parent="Mesh/container7" instance=ExtResource("1_scul4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8628, -1.7053e-13, -13.7339)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8628, -1.7053e-13, -8.5339)
 
 [node name="container7" parent="Mesh/container7" instance=ExtResource("1_scul4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5937, -1.7053e-13, 3.26356)
 
 [node name="container8" parent="Mesh/container7" instance=ExtResource("1_scul4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5937, -1.7053e-13, 10.2636)
+
+[node name="container9" parent="Mesh/container7" instance=ExtResource("5_s81y4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 0, 22)
+
+[node name="container10" parent="Mesh/container7" instance=ExtResource("5_s81y4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 0, 19)
+
+[node name="container11" parent="Mesh/container7" instance=ExtResource("5_s81y4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 0, 16)
 
 [node name="fense" type="Node3D" parent="Mesh"]
 
@@ -292,13 +281,109 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 [node name="traffic_cone" type="Node3D" parent="Mesh"]
 
 [node name="traffic_cone" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.56476, 2.38419e-07, -18.9723)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9697, -1.66893e-06, 15.7509)
 
 [node name="traffic_cone2" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
-transform = Transform3D(0.990639, 0, 0.136511, 0, 1, 0, -0.136511, 0, 0.990639, -2.03831, 2.38419e-07, -18.9723)
+transform = Transform3D(0.990639, 0, 0.136511, 0, 1, 0, -0.136511, 0, 0.990639, 7.08522, -7.15255e-07, -20.4086)
+
+[node name="traffic_cone8" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(0.882045, 0, 0.471166, 0, 1, 0, -0.471166, 0, 0.882045, -16.171, -1.19209e-06, -18.5224)
+
+[node name="traffic_cone9" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(0.990512, 0, -0.137427, 0, 1, 0, 0.137427, 0, 0.990512, -14.5623, -1.19209e-06, -19.2404)
+
+[node name="traffic_cone5" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(0.990639, 0, 0.136511, 0, 1, 0, -0.136511, 0, 0.990639, -18.8711, -7.15255e-07, 0.75655)
 
 [node name="traffic_cone3" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
-transform = Transform3D(0.896007, 0, -0.444041, 0, 1, 0, 0.444041, 0, 0.896007, -0.559666, 2.38419e-07, -17.8859)
+transform = Transform3D(0.896007, 0, -0.444041, 0, 1, 0, 0.444041, 0, 0.896007, 24.9583, 4.76838e-07, -18.5334)
+
+[node name="traffic_cone7" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(0.685527, 0, -0.728048, 0, 1, 0, 0.728048, 0, 0.685527, 26.042, 4.76838e-07, -18.6281)
+
+[node name="traffic_cone6" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(-0.146462, 0.00171126, -0.989215, 0.000771915, 0.999998, 0.00161563, 0.989216, -0.000526962, -0.146463, 22.6633, 2.38419e-07, -9.42095)
+
+[node name="traffic_cone4" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(0.830722, 0, 0.556688, 0, 1, 0, -0.556688, 0, 0.830722, 26.9293, 2.38419e-07, -19.2618)
+
+[node name="scaffold" type="Node3D" parent="Mesh"]
+
+[node name="pipe_scaffold" parent="Mesh/scaffold" instance=ExtResource("7_y56vo")]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -4.7681, 0.1, -20.1635)
+
+[node name="pipe_scaffold11" parent="Mesh/scaffold" instance=ExtResource("7_y56vo")]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -4.94241, 0.1, -18.1711)
+
+[node name="pipe_scaffold2" parent="Mesh/scaffold" instance=ExtResource("7_y56vo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.97346, 0, -22.0303)
+
+[node name="pipe_scaffold3" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.2, 0.1, -23.8)
+
+[node name="pipe_scaffold5" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.0499, 0.1, -23.8)
+
+[node name="pipe_scaffold6" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.9003, 0.1, -23.8)
+
+[node name="pipe_scaffold7" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.7546, 0.1, -23.8)
+
+[node name="pipe_scaffold8" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.6045, 0.1, -23.8)
+
+[node name="pipe_scaffold9" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.4549, 0.1, -23.8)
+
+[node name="pipe_scaffold10" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20.3075, 0.1, -23.8)
+
+[node name="pipe_scaffold4" parent="Mesh/scaffold" instance=ExtResource("9_kufhj")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 20.4, 0.1, -22.1)
+
+[node name="cloth" type="Node3D" parent="Mesh"]
+
+[node name="cloth_2" parent="Mesh/cloth" instance=ExtResource("8_6a5p4")]
+transform = Transform3D(-4.37114e-08, 0, -0.92022, 0, 0.945028, 0, 1, 0, -4.02241e-08, -16.2325, 1.23471, -24.9537)
+
+[node name="cloth_3" parent="Mesh/cloth" instance=ExtResource("8_6a5p4")]
+transform = Transform3D(-4.37114e-08, 0, -0.92022, 0, 0.945028, 0, 1, 0, -4.02241e-08, -13.8462, 1.23471, -24.9537)
+
+[node name="cloth_6" parent="Mesh/cloth" instance=ExtResource("8_6a5p4")]
+transform = Transform3D(-4.37114e-08, 0, -0.92022, 0, 0.945028, 0, 1, 0, -4.02241e-08, -10.8462, 1.39244, -24.9537)
+
+[node name="cloth_7" parent="Mesh/cloth" instance=ExtResource("8_6a5p4")]
+transform = Transform3D(-4.37114e-08, 0, -0.92022, 0, 0.945028, 0, 1, 0, -4.02241e-08, -4.84623, 1.25187, -24.9537)
+
+[node name="cloth_4" parent="Mesh/cloth" instance=ExtResource("8_6a5p4")]
+transform = Transform3D(-4.37114e-08, 0, -0.92022, 0, 0.945028, 0, 1, 0, -4.02241e-08, 8.85436, 1.25187, -24.9537)
+
+[node name="cloth_5" parent="Mesh/cloth" instance=ExtResource("8_6a5p4")]
+transform = Transform3D(-4.37114e-08, 0, -0.92022, 0, 0.945028, 0, 1, 0, -4.02241e-08, 16.1883, 1.25187, -24.9537)
+
+[node name="cloth_8" parent="Mesh/cloth" instance=ExtResource("11_a6mvv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.713, 1, -22.9334)
+
+[node name="drum" type="Node3D" parent="Mesh"]
+
+[node name="drum" parent="Mesh/drum" instance=ExtResource("11_kufhj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4829, 0, -22.3147)
+
+[node name="drum2" parent="Mesh/drum" instance=ExtResource("11_kufhj")]
+transform = Transform3D(0.458603, 0, 0.888641, 0, 1, 0, -0.888641, 0, 0.458603, -16.8435, 0, -21.02)
+
+[node name="drum3" parent="Mesh/drum" instance=ExtResource("11_kufhj")]
+transform = Transform3D(0.831906, 0, 0.554917, 0, 1, 0, -0.554917, 0, 0.831906, -15.5585, 0, -21.5237)
+
+[node name="drum6" parent="Mesh/drum" instance=ExtResource("11_kufhj")]
+transform = Transform3D(-3.85769e-08, 0.882537, -0.470242, -1, -4.37114e-08, 1.02933e-16, -2.05549e-08, 0.470242, 0.882538, -14.6409, 0.4, -22.9329)
+
+[node name="drum4" parent="Mesh/drum" instance=ExtResource("11_kufhj")]
+transform = Transform3D(0.952762, 0, -0.303717, 0, 1, 0, 0.303717, 0, 0.952762, -15.6549, 0, -20.2212)
+
+[node name="drum5" parent="Mesh/drum" instance=ExtResource("11_kufhj")]
+transform = Transform3D(0.589634, 0, -0.807671, 0, 1, 0, 0.807671, 0, 0.589634, -16.7457, 0, -19.9173)
 
 [node name="Player" parent="." instance=ExtResource("1_emx41")]
 

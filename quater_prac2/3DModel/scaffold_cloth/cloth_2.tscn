@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkaiwa1l7og18"]
+
+[ext_resource type="PackedScene" uid="uid://cbe20hoxrw8iu" path="res://3DModel/scaffold_cloth/cloth_2.glb" id="1_2ofrm"]
+[ext_resource type="Texture2D" uid="uid://bpvwfyeckacrr" path="res://3DModel/scaffold_cloth/cloth_2_New_Graph_base_col_atlas.png" id="2_qxlno"]
+[ext_resource type="Texture2D" uid="uid://bd3gop52cfebe" path="res://3DModel/scaffold_cloth/cloth_2_New_Graph_ORM_atlas.png" id="3_dwos2"]
+[ext_resource type="Texture2D" uid="uid://dcaanr5o0ysdh" path="res://3DModel/scaffold_cloth/cloth_2_Substance_graph_normal.png" id="4_1xqve"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5o6rs"]
+resource_name = "cloth_atlas_glb"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(0.455473, 0.579805, 0.949184, 1)
+albedo_texture = ExtResource("2_qxlno")
+metallic = 1.0
+metallic_texture = ExtResource("3_dwos2")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("3_dwos2")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_scale = 1.2
+normal_texture = ExtResource("4_1xqve")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_67o5l"]
+_surfaces = [{
+"aabb": AABB(-6.89273e-08, -0.91297, -0.91297, 1e-05, 1.82594, 1.82594),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"name": "cloth_atlas_glb",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 255, 255, 255, 255, 0, 0, 135, 3, 0, 0, 0, 0, 0, 0, 135, 3, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_g1k8y"]
+resource_name = "cloth_2_Plane_028"
+_surfaces = [{
+"aabb": AABB(-6.89273e-08, -0.91297, -0.91297, 1e-05, 1.82594, 1.82594),
+"attribute_data": PackedByteArray(0, 0, 0, 0, 255, 127, 255, 127, 0, 0, 255, 127, 255, 127, 0, 0),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_5o6rs"),
+"name": "cloth_atlas_glb",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 255, 255, 255, 255, 255, 191, 135, 3, 0, 0, 0, 0, 255, 191, 135, 3, 0, 0, 255, 255, 255, 191, 0, 0, 255, 255, 0, 0, 255, 191, 255, 127, 0, 0, 255, 127, 0, 0, 255, 127, 0, 0, 255, 127, 0, 0)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_67o5l")
+
+[node name="cloth_2" instance=ExtResource("1_2ofrm")]
+
+[node name="Plane_028" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="Plane_029" parent="." index="1"]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
+mesh = SubResource("ArrayMesh_g1k8y")
