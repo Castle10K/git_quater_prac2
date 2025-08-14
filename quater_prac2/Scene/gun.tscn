@@ -1,8 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://cltd7jcyn2sb2"]
+[gd_scene load_steps=4 format=3 uid="uid://cltd7jcyn2sb2"]
 
 [ext_resource type="PackedScene" uid="uid://x8a0ifd5ysmt" path="res://3DModel/gun/gun_anim_set.glb" id="1_qaof2"]
+[ext_resource type="Script" uid="uid://cvse4w4def2hw" path="res://Script/gun.gd" id="2_0fcgr"]
+[ext_resource type="AudioStream" uid="uid://cjq8v247svncj" path="res://Audio/337697__thenikonproductions__gun-sound-4.mp3" id="3_gjdbb"]
 
 [node name="gun" instance=ExtResource("1_qaof2")]
+script = ExtResource("2_0fcgr")
+
+[node name="gun_tan_merge" parent="." index="0"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Marker3D" type="Marker3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0741669, 0.500467)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0741669, -0.499533)
+
+[node name="Cooldown" type="Timer" parent="." index="2"]
+one_shot = true
+
+[node name="Shotsound" type="AudioStreamPlayer3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0800736, -0.516239)
+stream = ExtResource("3_gjdbb")
+volume_db = -10.0

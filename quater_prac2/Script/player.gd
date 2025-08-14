@@ -3,7 +3,9 @@ extends CharacterBody3D
 #이동 변수
 var input_dir : Vector2
 var direction : Vector3
-const SPEED : float = 7.0
+var SPEED : float = 7.0
+var attack_speed : float = 5.5
+var run_speed : float = 7.0
 var accel : float = 10.0
 
 #쳐다보기 변수
@@ -13,7 +15,8 @@ var turn_accel: float = 10.0
 #외부변수
 @onready var cam_node : Node3D = $"../Camera" # 카메라 씬
 @onready var cam3d : Camera3D = $"../Camera/CamPar/SpringArm3D/Camera3D" # 카메라 노드
-@onready var target_effect : MeshInstance3D = $"../TargetEffect"
+@onready var target_effect : MeshInstance3D = $"../TargetEffect" # 마우스 위치 지정용 이펙트
+@onready var attack_timer : Timer = $AttackHoldTimer # 공격모드 설정용 타이머
 
 #애니메이션 변수
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
@@ -29,11 +32,17 @@ var effect_shader_param : float = 0.0
 
 #모드
 var attack_mode : bool = false
+signal attack_mode_signal
+signal run_mode_signal
+
+#피격 변수
+signal player_hit
 
 func _ready() -> void:
 	view_dir = -global_transform.basis.z
 	effect_material = target_effect.get_active_material(0)
 	anim_tree.active = true
+	attack_timer.timeout.connect(_on_attack_timer_timeout)
 
 func _process(delta: float) -> void:
 	if attack_mode:
@@ -52,13 +61,18 @@ func _physics_process(delta: float) -> void:
 	anim_set()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+		if event.is_pressed(): # 누르는 동안을 감지
+			attack_mode_signal.emit()
 			attack_mode = true
-		if Input.is_action_just_released("shoot"):
-			await get_tree().create_timer(3.0).timeout # 코루틴 ? 병렬처리인가 ? 뭔지 알아볼 필요 있음
-			attack_mode = false
-				
+			if attack_timer.is_stopped() == false: # 만약 타이머가 멈춰있지 않다면 타이머 정지
+				attack_timer.stop()
+		else:
+			run_mode_signal.emit()
+			#뗏을 때 3초 후 해제 타이머 시작
+			#이미 돌고 있으면 다시 시작해서 남은 시간을 리셋
+			attack_timer.start(3.0)
+
 
 ###############################
 ########## 기능 함수들 ##########
@@ -73,7 +87,7 @@ func basic_move(delta: float) -> void: #이동 관련
 	var final_view_dir : Vector3
 	
 	if attack_mode:
-		final_view_dir = target_effect.global_position
+		final_view_dir = Vector3(target_effect.global_position.x, global_position.y, target_effect.global_position.z)
 		look_at(final_view_dir, Vector3.UP)
 	else:
 		if direction.length() > 0: # direction 0일땐 아무것도 안하게
@@ -84,7 +98,7 @@ func basic_move(delta: float) -> void: #이동 관련
 	move_and_slide()
 
 
-func cam_follow(delta: float) -> void: #카메라 따라오기
+func cam_follow(_delta: float) -> void: #카메라 따라오기
 	cam_node.global_position = global_position
 
 func ray_cast(cam: Camera3D) -> Vector3: #마우스 레이캐스팅
@@ -114,29 +128,71 @@ func mouse_effect(mouse_pos: Vector3) -> void:
 	effect_material.set_shader_parameter("factor", effect_shader_param) # 쉐이더 파라미터 설정
 
 func attacking() -> void: #공격모드
-	is_running = false
+	
+	if is_running == true:
+		is_running = false
+	
+	if SPEED > attack_speed:
+		SPEED = attack_speed
+		accel = 20.0
 	attack_anim_value = lerp(attack_anim_value, 1.0, 0.5) # 블렌드 트리에서 공격모션으로 변경하는 프로퍼티
 	blend_pos = lerp(blend_pos, input_dir, 0.3) # 8way 애니메이션 변환 속도
 	
-	#캐릭터 회전에 맞게 8way 포지션 회전
-	var char_rotate : float = global_basis.get_euler().y
-	var blend_pos_vector3 : Vector3 = Vector3(blend_pos.x, 0, blend_pos.y)
-	var new_rotated_vector3 : Vector3 = blend_pos_vector3.rotated(Vector3.UP, char_rotate)
-	fin_blend_pos = Vector2(new_rotated_vector3.x, new_rotated_vector3.z)
-	fin_blend_pos.normalized()
+	##유튜브에서 얻은 코드
+	var mov_dir = direction.normalized()
+	var h_rot = get_rotation().y
+	var b_pos = Vector3.ZERO
+	b_pos = mov_dir.rotated(Vector3.UP, -h_rot).normalized()
+	var b_pos_vec2 = Vector2(b_pos.x, -b_pos.z)
+	fin_blend_pos = fin_blend_pos.lerp(b_pos_vec2, 0.5)
+	
+	##캐릭터 지역축 // GPT 코드
+	#var right : Vector3 = global_transform.basis.x
+	#var forward : Vector3 = -global_transform.basis.z
+	#
+	##입력을 월드 이동 벡터로 해석 ..
+	#var world_move : Vector3 = right * blend_pos.x + forward * blend_pos.y
+	#
+	##blendspace2d에 넣을 로컬 성분 (캐릭터 기준)으로 다시 투영
+	##X = 오른쪽(+), Y = 앞(+) 가 되도록 dot를 취합
+	#var local_x = world_move.dot(right)
+	#var local_y = world_move.dot(forward)
+	#
+	#fin_blend_pos = Vector2(local_x, local_y)
+	#if fin_blend_pos.length_squared() > 0.000001:
+		#fin_blend_pos = fin_blend_pos.normalized()
+	#else:
+		#fin_blend_pos = Vector2.ZERO
+	
+	
+	##캐릭터 회전에 맞게 8way 포지션 회전 // 예전 코드
+	#var char_rotate : float = global_basis.get_euler().y
+	#var blend_pos_vector3 : Vector3 = Vector3(blend_pos.x, 0, blend_pos.y)
+	#var new_rotated_vector3 : Vector3 = blend_pos_vector3.rotated(Vector3.UP, char_rotate)
+	#fin_blend_pos = Vector2(new_rotated_vector3.x, new_rotated_vector3.z)
+	#print(fin_blend_pos)
 
 func running() -> void: #러닝모드
+	if SPEED <= run_speed:
+		SPEED = run_speed
+		accel = 10.0
 	attack_anim_value = lerp(attack_anim_value, 0.0, 0.5)
-	if direction:
+	if direction.length_squared() > 0.0001:
 		is_running = true
 	else:
 		is_running = false
 
 func anim_set() -> void:
-	#블렌드트리, 러닝 컨디션 파라미
+	#블렌드트리, 러닝 컨디션 파라미터
 	anim_tree.set("parameters/attack_select/blend_amount", attack_anim_value)
 	anim_tree.set("parameters/running_state/conditions/start_run", is_running)
 	anim_tree.set("parameters/running_state/conditions/stop_run", !is_running)
 	
 	#사격 이동
 	anim_tree.set("parameters/8way/blend_position", fin_blend_pos)
+	
+func _on_attack_timer_timeout() -> void: # 공격모드 타이머
+	attack_mode = false
+
+func hit(damage: float) -> void:
+	player_hit.emit()

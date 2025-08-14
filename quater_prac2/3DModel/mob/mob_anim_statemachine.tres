@@ -1,0 +1,70 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=13 format=3 uid="uid://gjtctrtqagr1"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_bmi5g"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a847k"]
+resource_local_to_scene = true
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_a847k"]
+graph_offset = Vector2(-949, 33)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_bmi5g")
+nodes/TimeScale/position = Vector2(-60, 120)
+nodes/attack/node = SubResource("AnimationNodeAnimation_a847k")
+nodes/attack/position = Vector2(-280, 120)
+nodes/output/position = Vector2(280, 120)
+node_connections = [&"TimeScale", 0, &"attack", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_bm71s"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bmi5g"]
+resource_local_to_scene = true
+animation = &"Dying"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bmi5g"]
+graph_offset = Vector2(-742, 24)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_bm71s")
+nodes/TimeScale/position = Vector2(20, 140)
+nodes/dying/node = SubResource("AnimationNodeAnimation_bmi5g")
+nodes/dying/position = Vector2(-200, 120)
+nodes/output/position = Vector2(280, 140)
+node_connections = [&"TimeScale", 0, &"dying", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i1r64"]
+resource_local_to_scene = true
+animation = &"zombie_run/zombie_run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7lcyc"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bmi5g"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bm71s"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3olk1"]
+xfade_time = 0.3
+advance_mode = 2
+advance_condition = &"die"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4qmcl"]
+xfade_time = 0.3
+advance_mode = 2
+advance_condition = &"die"
+
+[resource]
+states/Attack/node = SubResource("AnimationNodeBlendTree_a847k")
+states/Attack/position = Vector2(690, 71)
+states/Dying/node = SubResource("AnimationNodeBlendTree_bmi5g")
+states/Dying/position = Vector2(567, 218)
+states/Run/node = SubResource("AnimationNodeAnimation_i1r64")
+states/Run/position = Vector2(447, 66)
+states/Start/position = Vector2(239, 179)
+transitions = ["Start", "Run", SubResource("AnimationNodeStateMachineTransition_7lcyc"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_bmi5g"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_bm71s"), "Attack", "Dying", SubResource("AnimationNodeStateMachineTransition_3olk1"), "Run", "Dying", SubResource("AnimationNodeStateMachineTransition_4qmcl")]
+graph_offset = Vector2(-200, 12)

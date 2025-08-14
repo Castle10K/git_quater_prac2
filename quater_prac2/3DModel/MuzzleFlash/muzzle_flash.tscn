@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvlha75yn25h5"]
+
+[ext_resource type="Shader" uid="uid://dx8slrrgkd2sf" path="res://3DModel/MuzzleFlash/shader/muzzle_flash.gdshader" id="1_v4d0h"]
+[ext_resource type="Texture2D" uid="uid://mci41qw4e1m" path="res://3DModel/MuzzleFlash/muzzle_flash5.png" id="2_qmr6n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qmr6n"]
+render_priority = 0
+shader = ExtResource("1_v4d0h")
+shader_parameter/base_texture = ExtResource("2_qmr6n")
+shader_parameter/color_hint = Color(0.824821, 0.878926, 0.330935, 1)
+shader_parameter/color_power = 4.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xwenn"]
+material = SubResource("ShaderMaterial_qmr6n")
+
+[node name="Muzzle_flash" type="Node3D"]
+
+[node name="transform" type="Node3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="transform"]
+transform = Transform3D(-2.84314e-08, 0.650435, 0.650435, 2.84314e-08, 0.650435, -0.650435, -0.919855, 0, -4.02081e-08, 0, 0, -0.808164)
+mesh = SubResource("PlaneMesh_xwenn")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="transform"]
+transform = Transform3D(3.09086e-08, 0.707107, -0.707107, 3.09086e-08, -0.707107, -0.707107, -1, 0, -4.37114e-08, 0, 0, -0.9)
+mesh = SubResource("PlaneMesh_xwenn")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="transform"]
+transform = Transform3D(-0.167522, 0.309584, 0.647705, 0.467602, -2.20672e-08, 0.265153, 0.0632779, 0.819592, -0.244657, 0, 0, -0.305214)
+mesh = SubResource("PlaneMesh_xwenn")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="transform"]
+transform = Transform3D(-0.485026, -0.14954, -0.133793, -0.00994608, -0.587827, 0.549559, -0.123977, 0.632195, 0.479343, 0, 0, -0.358138)
+mesh = SubResource("PlaneMesh_xwenn")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4)
+light_color = Color(0.89065, 0.94, 0.517, 1)
+light_energy = 2.5

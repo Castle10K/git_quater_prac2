@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cbmwva85hf3he"]
+[gd_scene load_steps=28 format=3 uid="uid://cbmwva85hf3he"]
 
 [ext_resource type="PackedScene" uid="uid://b4xhv0axupn2i" path="res://Scene/player.tscn" id="1_emx41"]
 [ext_resource type="Texture2D" uid="uid://fe3pauenmlp5" path="res://GlobalTexture/moon_04_diff_2k.png" id="1_ol2hl"]
+[ext_resource type="Script" uid="uid://dtund757pvioy" path="res://Scene/world.gd" id="1_opfkj"]
 [ext_resource type="PackedScene" uid="uid://bv6f2ibn4o6l7" path="res://3DModel/container/container.tscn" id="1_scul4"]
 [ext_resource type="Texture2D" uid="uid://b3rv3c4cbtamj" path="res://GlobalTexture/moon_04_arm_2k.png" id="2_ddf65"]
 [ext_resource type="PackedScene" uid="uid://b45dwpo7ld58q" path="res://Scene/camera.tscn" id="2_dlwip"]
@@ -14,8 +15,12 @@
 [ext_resource type="PackedScene" uid="uid://c8nal3lrwx81s" path="res://3DModel/scaffold/pipe_scaffold_road.tscn" id="8_0gfnl"]
 [ext_resource type="PackedScene" uid="uid://bkaiwa1l7og18" path="res://3DModel/scaffold_cloth/cloth_2.tscn" id="8_6a5p4"]
 [ext_resource type="PackedScene" uid="uid://bvflacs1ca14p" path="res://3DModel/scaffold/pipe_scaffold_downstair.tscn" id="9_kufhj"]
-[ext_resource type="PackedScene" uid="uid://63g1kixtcvgd" path="res://3DModel/scaffold_cloth/cloth_1.tscn" id="11_a6mvv"]
 [ext_resource type="PackedScene" uid="uid://b755ijfumdr1p" path="res://3DModel/drum/drum.tscn" id="11_kufhj"]
+[ext_resource type="PackedScene" uid="uid://ck35apbsd07g7" path="res://3DModel/military_box/wood_box.tscn" id="14_bfvnh"]
+[ext_resource type="PackedScene" uid="uid://br3enhenpj4ip" path="res://3DModel/mob/mob_anim.tscn" id="18_o8j5v"]
+[ext_resource type="AudioStream" uid="uid://dsmfaifxmpdh" path="res://Audio/wind_loop_bgm.mp3" id="20_7lbl5"]
+[ext_resource type="Texture2D" uid="uid://dc0e7dqhmyncb" path="res://GlobalTexture/wasd.png" id="20_ptfde"]
+[ext_resource type="Texture2D" uid="uid://cnhvjm5e5x1yi" path="res://GlobalTexture/fire.png" id="21_w1jyx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xtl80"]
 sky_top_color = Color(0.363519, 0.444109, 0.622495, 1)
@@ -35,6 +40,12 @@ tonemap_white = 16.0
 ssao_enabled = true
 glow_enabled = true
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_bfvnh"]
+vertices = PackedVector3Array(-59.5, 0.3, -21.75, -32, 0.3, -21.75, -28, 0.3, -26, -26, 0.3, -59.5, -59.5, 0.3, -59.5, -26, 0.3, -26, 26, 0.3, -26, 26, 0.3, -59.5, 28.25, 0.3, -25.75, 28.5, 0.3, -23.25, 59.5, 0.3, -23.25, 59.5, 0.3, -59.5, -30.75, 0.3, -20.75, -30.5, 0.3, -14.75, -28.75, 0.3, -14.75, -27.25, 0.3, -24.25, -28.75, 0.3, -12.75, -19.25, 0.3, -12.75, -19.25, 0.3, -24.25, -13.5, 0.3, -21.5, -14.5, 0.3, -21.5, -14.5, 0.3, -19.75, -17.5, 0.3, -24.25, -17.5, 0.3, -23, -15.25, 0.3, -23, -14.75, 0.3, -24, -8, 0.3, -24, -5.5, 0.3, -23.75, -5.25, 0.3, -24.25, -12.75, 0.3, -22.25, -9, 0.3, -16.75, -8.5, 0.3, -23.5, -17.5, 0.3, -3.25, -17.5, 0.3, 0.25, -15, 0.3, -0.25, -15.5, 0.3, -3.5, -12.75, 0.3, -23.25, -14, 0.3, 1.5, -9.25, 0.3, 1.5, -9.25, 0.3, -1.5, -15.25, 0.3, -6, -7.75, 0.3, -1.75, -7.5, 0.3, -1.25, -7.25, 0.3, -16.5, -15, 0.3, -19.25, -15.75, 0.3, -6.5, -17.5, 0.3, -19, -17.5, 0.3, -6.5, 24, 0.3, -0.5, 26.75, 0.3, -0.5, 26.75, 0.3, -4.75, 24, 0.3, -5, 23.75, 0.3, 1.25, 22.5, 0.3, -17.75, 8.5, 0.3, -20.5, -5.75, 0.3, -16.25, -7.5, 0.3, 1, 26.75, 0.3, -24.25, 26, 0.3, -24.25, 26.25, 0.3, -18, 26.75, 0.3, -12.25, 25.75, 0.3, -17.5, 24, 0.3, -12, -5.25, 0.3, -16.75, 22.25, 0.3, -24.25, 8.5, 0.3, -24.25, -5, 0.3, -20.5, 23.5, 3.05, -18.5, 25.25, 3.05, -18.5, 25, 3.05, -24, 23.25, 3.05, -24, 23.75, 0.3, -18.75, 25, 0.3, -18.75, 24.75, 0.3, -23.75, 23.5, 0.3, -23.75, -1.75, 5.55, -22.75, -1.75, 5.55, -21.25, 3.75, 5.55, -22, 3.5, 5.55, -23.5, -4.5, 3.05, -21.5, -2.75, 3.05, -21.5, -3, 3.05, -23.25, -4.5, 3.05, -23.25, 2.5, 3.05, -23.25, 2.5, 3.05, -22, 3.25, 3.05, -22.25, 3.25, 3.05, -23.25, 4.75, 3.05, -21.5, 7.75, 3.05, -21.5, 7.75, 3.05, -23.25, 4.5, 3.05, -23.25, 28.5, 0.3, 18.75, 59.5, 0.3, 18.75, -8, 3.05, -18.5, -8, 3.05, -17.5, -6.25, 3.05, -17.5, -5.75, 3.05, -21.75, -5.75, 3.05, -22.75, -7.5, 3.05, -23, -4.25, 0.3, -23, -4.25, 0.3, -21.75, 0.5, 0.3, -21.75, 0.5, 0.3, -23, 2.75, 0.3, -23, 2.75, 0.3, -21.75, 7.5, 0.3, -21.75, 7.5, 0.3, -23, -1.5, 3.05, -22.5, -1.5, 3.05, -21.5, 0.75, 3.05, -21.75, 0.75, 3.05, -22.75, -7.25, 0.3, -22.5, -7.75, 0.3, -18.25, -7.75, 0.3, -17.75, -6.5, 0.3, -17.75, -6, 0.3, -22, -6, 0.3, -22.5, -31.5, 0.3, -20.75, -59.5, 0.3, -12.75, -30.5, 0.3, -12.75, -59.5, 0.3, 19.75, -30.75, 0.3, 20.25, -28.75, 0.3, -1.5, -19.25, 0.3, -1.5, 25, 3.05, -11.25, 25, 3.05, -5.75, 26.5, 3.05, -5.75, 26.5, 3.05, -11.25, 25.25, 0.3, -11, 25.25, 0.3, -6, 26.25, 0.3, -6, 26.25, 0.3, -11, -18.5, 0.3, 2.25, -18.5, 0.3, 0.75, -19.25, 0.3, 0.5, -28.75, 0.3, 16.5, -23.75, 0.3, 16.5, -23.5, 0.3, 14.25, -17, 0.3, 4.25, -17, 0.3, 14.25, 24.75, 3.05, 0.5, 24.75, 3.05, 6, 26.5, 3.05, 6, 26.5, 3.05, 0.5, 25, 0.3, 0.75, 25, 0.3, 5.75, 26.25, 0.3, 5.75, 26.25, 0.3, 0.75, 26.25, 0.3, 18.75, 26, 0.3, 20.5, 26.75, 0.3, 20, 23.5, 0.3, 23.25, 25.25, 0.3, 21.25, 22.5, 0.3, 21, 21.75, 0.3, 20.25, -7.5, 0.3, 23.25, 26.75, 0.3, 14, 24, 0.3, 18, 23.75, 0.3, 13.75, 21.75, 0.3, 19.25, 23, 0.3, 18, -15.5, 0.3, 3.75, -16.25, 0.3, 14.5, -9.25, 0.3, 16.5, -16.25, 0.3, 16.5, 24.75, 3.05, 7.5, 24.75, 3.05, 13, 26.5, 3.05, 13, 26.5, 3.05, 7.5, 25, 0.3, 7.75, 25, 0.3, 12.75, 26.25, 0.3, 12.75, 26.25, 0.3, 7.75, -22.75, 3.05, 15.25, -22.75, 3.05, 16.75, -17.25, 3.05, 16.75, -17.25, 3.05, 15.25, -22.5, 0.3, 15.5, -22.5, 0.3, 16.5, -17.5, 0.3, 16.5, -17.5, 0.3, 15.5, -28.75, 0.3, 20.5, -26, 0.3, 23.25, -23.75, 0.3, 23.25, -16.25, 0.3, 23.25, -9.25, 0.3, 23.25, -22.75, 3.05, 18.25, -22.75, 3.05, 19.75, -17.25, 3.05, 19.75, -17.25, 3.05, 18.25, -22.5, 0.3, 18.5, -22.5, 0.3, 19.5, -17.5, 0.3, 19.5, -17.5, 0.3, 18.5, 28.5, 0.3, 20.75, 24.25, 0.3, 25, 22.25, 0.3, 25, 22.25, 0.3, 59.5, 59.5, 0.3, 59.5, -30.75, 0.3, 21, -27, 0.3, 24.75, -59.5, 0.3, 59.5, -24.5, 0.3, 59.5, -24.5, 0.3, 25, -22.75, 3.05, 21.25, -22.75, 3.05, 22.75, -17.25, 3.05, 22.75, -17.25, 3.05, 21.25, -22.5, 0.3, 21.5, -22.5, 0.3, 22.5, -17.5, 0.3, 22.5, -17.5, 0.3, 21.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(3, 5, 2), PackedInt32Array(3, 7, 5), PackedInt32Array(5, 7, 6), PackedInt32Array(10, 9, 8), PackedInt32Array(8, 6, 10), PackedInt32Array(10, 6, 7), PackedInt32Array(10, 7, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(16, 14, 17), PackedInt32Array(17, 14, 15), PackedInt32Array(17, 15, 18), PackedInt32Array(21, 20, 19), PackedInt32Array(23, 22, 24), PackedInt32Array(24, 22, 25), PackedInt32Array(28, 27, 26), PackedInt32Array(25, 22, 26), PackedInt32Array(26, 22, 28), PackedInt32Array(19, 29, 21), PackedInt32Array(21, 29, 31), PackedInt32Array(21, 31, 30), PackedInt32Array(35, 34, 32), PackedInt32Array(32, 34, 33), PackedInt32Array(31, 36, 26), PackedInt32Array(26, 36, 25), PackedInt32Array(34, 35, 37), PackedInt32Array(37, 35, 40), PackedInt32Array(37, 40, 39), PackedInt32Array(37, 39, 38), PackedInt32Array(29, 36, 31), PackedInt32Array(43, 42, 41), PackedInt32Array(44, 21, 30), PackedInt32Array(40, 45, 39), PackedInt32Array(39, 45, 41), PackedInt32Array(41, 45, 30), PackedInt32Array(41, 30, 43), PackedInt32Array(44, 30, 46), PackedInt32Array(46, 30, 45), PackedInt32Array(46, 45, 47), PackedInt32Array(49, 48, 50), PackedInt32Array(50, 48, 51), PackedInt32Array(51, 52, 53), PackedInt32Array(53, 52, 54), PackedInt32Array(54, 52, 55), PackedInt32Array(55, 52, 56), PackedInt32Array(51, 48, 52), PackedInt32Array(58, 57, 59), PackedInt32Array(59, 57, 60), PackedInt32Array(43, 55, 42), PackedInt32Array(42, 55, 56), PackedInt32Array(60, 61, 59), PackedInt32Array(60, 62, 61), PackedInt32Array(61, 62, 53), PackedInt32Array(55, 63, 54), PackedInt32Array(53, 62, 51), PackedInt32Array(65, 64, 54), PackedInt32Array(54, 64, 53), PackedInt32Array(63, 66, 54), PackedInt32Array(70, 69, 67), PackedInt32Array(67, 69, 68), PackedInt32Array(74, 73, 71), PackedInt32Array(71, 73, 72), PackedInt32Array(78, 77, 75), PackedInt32Array(75, 77, 76), PackedInt32Array(82, 81, 79), PackedInt32Array(79, 81, 80), PackedInt32Array(86, 85, 83), PackedInt32Array(83, 85, 84), PackedInt32Array(88, 87, 89), PackedInt32Array(89, 87, 90), PackedInt32Array(9, 10, 91), PackedInt32Array(91, 10, 92), PackedInt32Array(94, 93, 95), PackedInt32Array(95, 93, 96), PackedInt32Array(96, 93, 97), PackedInt32Array(97, 93, 98), PackedInt32Array(102, 101, 99), PackedInt32Array(99, 101, 100), PackedInt32Array(106, 105, 103), PackedInt32Array(103, 105, 104), PackedInt32Array(110, 109, 107), PackedInt32Array(107, 109, 108), PackedInt32Array(116, 115, 111), PackedInt32Array(111, 115, 112), PackedInt32Array(112, 115, 113), PackedInt32Array(113, 115, 114), PackedInt32Array(117, 12, 13), PackedInt32Array(117, 13, 1), PackedInt32Array(1, 13, 119), PackedInt32Array(1, 119, 0), PackedInt32Array(0, 119, 118), PackedInt32Array(120, 118, 121), PackedInt32Array(121, 118, 119), PackedInt32Array(16, 17, 122), PackedInt32Array(122, 17, 123), PackedInt32Array(127, 126, 124), PackedInt32Array(124, 126, 125), PackedInt32Array(131, 130, 128), PackedInt32Array(128, 130, 129), PackedInt32Array(133, 132, 134), PackedInt32Array(134, 132, 122), PackedInt32Array(137, 136, 135), PackedInt32Array(122, 123, 134), PackedInt32Array(132, 138, 122), PackedInt32Array(122, 138, 137), PackedInt32Array(122, 137, 135), PackedInt32Array(138, 139, 137), PackedInt32Array(143, 142, 140), PackedInt32Array(140, 142, 141), PackedInt32Array(147, 146, 144), PackedInt32Array(144, 146, 145), PackedInt32Array(150, 149, 148), PackedInt32Array(153, 152, 151), PackedInt32Array(153, 151, 154), PackedInt32Array(154, 151, 155), PackedInt32Array(148, 156, 150), PackedInt32Array(148, 157, 156), PackedInt32Array(156, 157, 158), PackedInt32Array(159, 154, 155), PackedInt32Array(158, 157, 160), PackedInt32Array(160, 159, 158), PackedInt32Array(158, 159, 52), PackedInt32Array(52, 159, 56), PackedInt32Array(56, 159, 155), PackedInt32Array(37, 38, 161), PackedInt32Array(161, 38, 139), PackedInt32Array(139, 38, 162), PackedInt32Array(162, 38, 163), PackedInt32Array(163, 164, 162), PackedInt32Array(139, 138, 161), PackedInt32Array(168, 167, 165), PackedInt32Array(165, 167, 166), PackedInt32Array(172, 171, 169), PackedInt32Array(169, 171, 170), PackedInt32Array(176, 175, 173), PackedInt32Array(173, 175, 174), PackedInt32Array(180, 179, 177), PackedInt32Array(177, 179, 178), PackedInt32Array(182, 181, 183), PackedInt32Array(183, 181, 135), PackedInt32Array(183, 135, 136), PackedInt32Array(185, 184, 163), PackedInt32Array(163, 184, 164), PackedInt32Array(189, 188, 186), PackedInt32Array(186, 188, 187), PackedInt32Array(193, 192, 190), PackedInt32Array(190, 192, 191), PackedInt32Array(194, 91, 92), PackedInt32Array(197, 196, 195), PackedInt32Array(194, 92, 195), PackedInt32Array(195, 92, 197), PackedInt32Array(197, 92, 198), PackedInt32Array(120, 121, 199), PackedInt32Array(199, 200, 120), PackedInt32Array(120, 200, 201), PackedInt32Array(201, 200, 202), PackedInt32Array(200, 203, 202), PackedInt32Array(207, 206, 204), PackedInt32Array(204, 206, 205), PackedInt32Array(211, 210, 208), PackedInt32Array(208, 210, 209), PackedInt32Array(203, 196, 202), PackedInt32Array(202, 196, 197)]
+geometry_parsed_geometry_type = 1
+agent_height = 0.15
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y56vo"]
 albedo_color = Color(0.838136, 0.768114, 0.90538, 1)
 albedo_texture = ExtResource("1_ol2hl")
@@ -49,7 +60,16 @@ ao_enabled = true
 ao_texture = ExtResource("2_ddf65")
 uv1_scale = Vector3(15, 15, 15)
 
+[sub_resource type="Curve3D" id="Curve3D_opfkj"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -55, 0, -55, 0, 0, 0, 0, 0, 0, -55, 0, 55, 0, 0, 0, 0, 0, 0, 55, 0, 55, 0, 0, 0, 0, 0, 0, 55, 0, -55),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
 [node name="World" type="Node3D"]
+script = ExtResource("1_opfkj")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dlwip")
@@ -61,332 +81,477 @@ shadow_enabled = true
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 50.0
 
-[node name="CSG" type="CSGBox3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_bfvnh")
+
+[node name="CSG" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 use_collision = true
+collision_mask = 7
 size = Vector3(120, 0.2, 120)
 material = SubResource("StandardMaterial3D_y56vo")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8, 1.45, 3.5)
-visible = false
-size = Vector3(0.4, 2.7, 43)
+[node name="Mesh" type="Node3D" parent="NavigationRegion3D"]
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.2, 1.45, -0.200001)
-visible = false
-size = Vector3(0.4, 2.7, 50.4)
+[node name="container7" type="Node3D" parent="NavigationRegion3D/Mesh"]
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.14739e-06, 1.45, 24.8)
-visible = false
-size = Vector3(0.4, 2.7, 50)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.14739e-06, 1.45, -25.2)
-visible = false
-size = Vector3(0.4, 2.7, 50)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(-1, 0, 7.35137e-08, 0, 1, 0, -7.35137e-08, 0, -1, -18.2, 1, -12.8)
-size = Vector3(0.6, 1.8, 25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(-1, 0, 7.35137e-08, 0, 1, 0, -7.35137e-08, 0, -1, -8.3, 1, 12.2)
-size = Vector3(0.6, 1.8, 25)
-
-[node name="crate3" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, -15.9, 0.6, 0.4)
-
-[node name="crate4" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, -15.5, 1.6, 0.9)
-
-[node name="crate2" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(0.961765, 0, -0.273875, 0, 1, 0, 0.273875, 0, 0.961765, -16.6563, 0.6, 2.20548)
-
-[node name="crate" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, -15, 0.6, 1.4)
-
-[node name="crate5" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(-0.642788, 0, -0.766045, 0, 1, 0, 0.766045, 0, -0.642788, 22.6817, 0.6, 22.4342)
-
-[node name="crate6" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(-0.642788, 0, -0.766045, 0, 1, 0, 0.766045, 0, -0.642788, 22.1659, 1.6, 22.0547)
-
-[node name="crate7" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(-0.999878, 0, 0.01562, 0, 1, 0, -0.01562, 0, -0.999878, 22.9448, 0.6, 20.4945)
-
-[node name="crate8" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(-0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, -0.939693, 21.5535, 0.6, 21.7012)
-
-[node name="Mesh" type="Node3D" parent="."]
-
-[node name="container7" type="Node3D" parent="Mesh"]
-
-[node name="container" parent="Mesh/container7" instance=ExtResource("1_scul4")]
+[node name="container" parent="NavigationRegion3D/Mesh/container7" instance=ExtResource("1_scul4")]
 transform = Transform3D(0.993657, 0, -0.112458, 0, 1, 0, 0.112458, 0, 0.993657, -6.86796, 0, -20.1402)
 
-[node name="container2" parent="Mesh/container7" instance=ExtResource("1_scul4")]
+[node name="container2" parent="NavigationRegion3D/Mesh/container7" instance=ExtResource("1_scul4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.94899, -4.76837e-07, -22.3623)
 
-[node name="container4" parent="Mesh/container7" instance=ExtResource("1_scul4")]
+[node name="container4" parent="NavigationRegion3D/Mesh/container7" instance=ExtResource("1_scul4")]
 transform = Transform3D(-0.146566, 0, 0.989201, 0, 1, 0, -0.989201, 0, -0.146566, 0.901258, 2.6, -22.3565)
 
-[node name="container3" parent="Mesh/container7" instance=ExtResource("1_scul4")]
+[node name="container3" parent="NavigationRegion3D/Mesh/container7" instance=ExtResource("1_scul4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.05101, -4.76837e-07, -22.3623)
 
-[node name="container5" parent="Mesh/container7" instance=ExtResource("1_scul4")]
-transform = Transform3D(0.999495, 0, 0.0317943, 0, 1, 0, -0.0317943, 0, 0.999495, 22.7373, 4.76837e-07, -21.2199)
+[node name="container5" parent="NavigationRegion3D/Mesh/container7" instance=ExtResource("1_scul4")]
+transform = Transform3D(0.999495, 0, 0.0317943, 0, 1, 0, -0.0317943, 0, 0.999495, 24.2365, 4.76837e-07, -21.2676)
 
-[node name="container6" parent="Mesh/container7" instance=ExtResource("1_scul4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8628, -1.7053e-13, -8.5339)
+[node name="container6" parent="NavigationRegion3D/Mesh/container7" instance=ExtResource("1_scul4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7789, -1.7053e-13, -8.5339)
 
-[node name="container7" parent="Mesh/container7" instance=ExtResource("1_scul4")]
+[node name="container7" parent="NavigationRegion3D/Mesh/container7" instance=ExtResource("1_scul4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5937, -1.7053e-13, 3.26356)
 
-[node name="container8" parent="Mesh/container7" instance=ExtResource("1_scul4")]
+[node name="container8" parent="NavigationRegion3D/Mesh/container7" instance=ExtResource("1_scul4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5937, -1.7053e-13, 10.2636)
 
-[node name="container9" parent="Mesh/container7" instance=ExtResource("5_s81y4")]
+[node name="container9" parent="NavigationRegion3D/Mesh/container7" instance=ExtResource("5_s81y4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 0, 22)
 
-[node name="container10" parent="Mesh/container7" instance=ExtResource("5_s81y4")]
+[node name="container10" parent="NavigationRegion3D/Mesh/container7" instance=ExtResource("5_s81y4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 0, 19)
 
-[node name="container11" parent="Mesh/container7" instance=ExtResource("5_s81y4")]
+[node name="container11" parent="NavigationRegion3D/Mesh/container7" instance=ExtResource("5_s81y4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 0, 16)
 
-[node name="fense" type="Node3D" parent="Mesh"]
+[node name="fense" type="Node3D" parent="NavigationRegion3D/Mesh"]
 
-[node name="fence" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -25)
 
-[node name="fence2" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence2" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -25)
 
-[node name="fence39" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence39" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -25)
 
-[node name="fence40" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence40" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -25)
 
-[node name="fence3" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence41" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18.2776, 0, -22.4785)
+
+[node name="fence42" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18.2776, 0, -17.3626)
+
+[node name="fence43" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18.2776, 0, -12.3626)
+
+[node name="fence44" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18.2776, 0, -7.36259)
+
+[node name="fence45" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18.2776, 0, -2.36259)
+
+[node name="fence3" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -25)
 
-[node name="fence4" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence4" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
 
-[node name="fence5" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence5" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -25)
 
-[node name="fence6" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence6" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -25)
 
-[node name="fence7" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence7" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -25)
 
-[node name="fence8" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence8" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -25)
 
-[node name="fence9" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence9" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -25)
 
-[node name="fence10" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence10" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 27.6, 0, -22.3)
 
-[node name="fence11" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence11" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 27.6, 0, -17.3)
 
-[node name="fence12" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence12" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 27.6, 0, -12.3)
 
-[node name="fence13" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence13" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 27.6, 0, -7.3)
 
-[node name="fence14" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence14" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 27.6, 0, -2.3)
 
-[node name="fence15" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence15" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 27.6, 0, 2.7)
 
-[node name="fence16" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence16" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 27.6, 0, 7.7)
 
-[node name="fence17" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence17" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 27.6, 0, 12.7)
 
-[node name="fence18" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence18" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 27.6, 0, 17.7)
 
-[node name="fence20" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence20" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 21.3, 0, 24)
 
-[node name="fence21" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence21" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 16.3, 0, 24)
 
-[node name="fence22" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence22" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.3, 0, 24)
 
-[node name="fence23" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence23" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.3, 0, 24)
 
-[node name="fence24" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence24" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.3, 0, 24)
 
-[node name="fence25" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence25" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.7, 0, 24)
 
-[node name="fence26" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence26" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8.7, 0, 24)
 
-[node name="fence27" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence46" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -8.31108, 0, 21.4167)
+
+[node name="fence47" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -8.31108, 0, 16.4167)
+
+[node name="fence48" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -8.31108, 0, 11.4167)
+
+[node name="fence49" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -8.31108, 0, 6.41673)
+
+[node name="fence50" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -8.31108, 0, 1.41673)
+
+[node name="fence27" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -13.7, 0, 24)
 
-[node name="fence28" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence28" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18.7, 0, 24)
 
-[node name="fence29" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence29" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -23.7, 0, 24)
 
-[node name="fence30" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence30" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -28.1, 0, 22.2)
 
-[node name="fence31" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence31" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.6, 0, 18.2)
 
-[node name="fence32" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence32" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.6, 0, 13.2)
 
-[node name="fence33" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence33" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.6, 0, 8.2)
 
-[node name="fence34" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence34" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.6, 0, 3.2)
 
-[node name="fence35" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence35" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.6, 0, -1.8)
 
-[node name="fence36" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence36" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.6, 0, -6.8)
 
-[node name="fence37" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence37" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.6, 0, -11.8)
 
-[node name="fence38" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence38" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -29.3, 0, -23.3)
 
-[node name="fence19" parent="Mesh/fense" instance=ExtResource("5_ddf65")]
+[node name="fence19" parent="NavigationRegion3D/Mesh/fense" instance=ExtResource("5_ddf65")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 25.6, 0, 22.2)
 
-[node name="traffic_cone" type="Node3D" parent="Mesh"]
+[node name="traffic_cone" type="Node3D" parent="NavigationRegion3D/Mesh"]
 
-[node name="traffic_cone" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+[node name="traffic_cone" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9697, -1.66893e-06, 15.7509)
 
-[node name="traffic_cone2" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+[node name="traffic_cone2" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
 transform = Transform3D(0.990639, 0, 0.136511, 0, 1, 0, -0.136511, 0, 0.990639, 7.08522, -7.15255e-07, -20.4086)
 
-[node name="traffic_cone8" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+[node name="traffic_cone8" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
 transform = Transform3D(0.882045, 0, 0.471166, 0, 1, 0, -0.471166, 0, 0.882045, -16.171, -1.19209e-06, -18.5224)
 
-[node name="traffic_cone9" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+[node name="traffic_cone12" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(0.882045, 0, 0.471166, 0, 1, 0, -0.471166, 0, 0.882045, -28.2909, -1.19209e-06, -13.1882)
+
+[node name="traffic_cone13" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.2971, -1.19209e-06, -13.2462)
+
+[node name="traffic_cone14" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.4536, -1.19209e-06, -13.2462)
+
+[node name="traffic_cone15" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.108, -1.19209e-06, -13.2462)
+
+[node name="traffic_cone16" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.2697, -1.19209e-06, -12.9183)
+
+[node name="traffic_cone9" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
 transform = Transform3D(0.990512, 0, -0.137427, 0, 1, 0, 0.137427, 0, 0.990512, -14.5623, -1.19209e-06, -19.2404)
 
-[node name="traffic_cone5" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+[node name="traffic_cone5" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
 transform = Transform3D(0.990639, 0, 0.136511, 0, 1, 0, -0.136511, 0, 0.990639, -18.8711, -7.15255e-07, 0.75655)
 
-[node name="traffic_cone3" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
-transform = Transform3D(0.896007, 0, -0.444041, 0, 1, 0, 0.444041, 0, 0.896007, 24.9583, 4.76838e-07, -18.5334)
+[node name="traffic_cone3" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(0.896007, 0, -0.444041, 0, 1, 0, 0.444041, 0, 0.896007, 24.7457, 4.76838e-07, -17.1569)
 
-[node name="traffic_cone7" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
-transform = Transform3D(0.685527, 0, -0.728048, 0, 1, 0, 0.728048, 0, 0.685527, 26.042, 4.76838e-07, -18.6281)
+[node name="traffic_cone7" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(0.685527, 0, -0.728048, 0, 1, 0, 0.728048, 0, 0.685527, 26.283, 4.76838e-07, -17.2196)
 
-[node name="traffic_cone6" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
-transform = Transform3D(-0.146462, 0.00171126, -0.989215, 0.000771915, 0.999998, 0.00161563, 0.989216, -0.000526962, -0.146463, 22.6633, 2.38419e-07, -9.42095)
+[node name="traffic_cone10" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(0.685527, 0, -0.728048, 0, 1, 0, 0.728048, 0, 0.685527, 24.0268, 4.76838e-07, -2.62411)
 
-[node name="traffic_cone4" parent="Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
-transform = Transform3D(0.830722, 0, 0.556688, 0, 1, 0, -0.556688, 0, 0.830722, 26.9293, 2.38419e-07, -19.2618)
+[node name="traffic_cone11" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(0.958855, 0, -0.283898, 0, 1, 0, 0.283898, 0, 0.958855, 23.7808, 4.76838e-07, -0.784167)
 
-[node name="scaffold" type="Node3D" parent="Mesh"]
+[node name="traffic_cone6" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(-0.146462, 0.00171126, -0.989215, 0.000771915, 0.999998, 0.00161563, 0.989216, -0.000526962, -0.146463, 23.9828, 2.38419e-07, -4.43283)
 
-[node name="pipe_scaffold" parent="Mesh/scaffold" instance=ExtResource("7_y56vo")]
+[node name="traffic_cone4" parent="NavigationRegion3D/Mesh/traffic_cone" instance=ExtResource("6_h7cfj")]
+transform = Transform3D(0.830722, 0, 0.556688, 0, 1, 0, -0.556688, 0, 0.830722, 26.9502, 0.0659969, -18.3592)
+
+[node name="scaffold" type="Node3D" parent="NavigationRegion3D/Mesh"]
+
+[node name="pipe_scaffold" parent="NavigationRegion3D/Mesh/scaffold" instance=ExtResource("7_y56vo")]
 transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -4.7681, 0.1, -20.1635)
 
-[node name="pipe_scaffold11" parent="Mesh/scaffold" instance=ExtResource("7_y56vo")]
-transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -4.94241, 0.1, -18.1711)
+[node name="pipe_scaffold11" parent="NavigationRegion3D/Mesh/scaffold" instance=ExtResource("7_y56vo")]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -4.97727, 0.1, -17.7726)
 
-[node name="pipe_scaffold2" parent="Mesh/scaffold" instance=ExtResource("7_y56vo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.97346, 0, -22.0303)
+[node name="pipe_scaffold2" parent="NavigationRegion3D/Mesh/scaffold" instance=ExtResource("7_y56vo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.973, 0, -21.53)
 
-[node name="pipe_scaffold3" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.2, 0.1, -23.8)
+[node name="pipe_scaffold3" parent="NavigationRegion3D/Mesh/scaffold" instance=ExtResource("8_0gfnl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.2, 0, -23.8)
 
-[node name="pipe_scaffold5" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.0499, 0.1, -23.8)
+[node name="pipe_scaffold5" parent="NavigationRegion3D/Mesh/scaffold" instance=ExtResource("8_0gfnl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6, 0, -23.8)
 
-[node name="pipe_scaffold6" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.9003, 0.1, -23.8)
+[node name="pipe_scaffold6" parent="NavigationRegion3D/Mesh/scaffold" instance=ExtResource("8_0gfnl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14, 0, -23.8)
 
-[node name="pipe_scaffold7" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.7546, 0.1, -23.8)
+[node name="pipe_scaffold7" parent="NavigationRegion3D/Mesh/scaffold" instance=ExtResource("8_0gfnl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.4, 0, -23.8)
 
-[node name="pipe_scaffold8" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.6045, 0.1, -23.8)
+[node name="pipe_scaffold8" parent="NavigationRegion3D/Mesh/scaffold" instance=ExtResource("8_0gfnl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.8, 0, -23.8)
 
-[node name="pipe_scaffold9" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.4549, 0.1, -23.8)
+[node name="pipe_scaffold9" parent="NavigationRegion3D/Mesh/scaffold" instance=ExtResource("8_0gfnl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.2, 0, -23.8)
 
-[node name="pipe_scaffold10" parent="Mesh/scaffold" instance=ExtResource("8_0gfnl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20.3075, 0.1, -23.8)
+[node name="pipe_scaffold4" parent="NavigationRegion3D/Mesh/scaffold" instance=ExtResource("9_kufhj")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 21.3, 0, -21.5)
 
-[node name="pipe_scaffold4" parent="Mesh/scaffold" instance=ExtResource("9_kufhj")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 20.4, 0.1, -22.1)
+[node name="cloth" type="Node3D" parent="NavigationRegion3D/Mesh"]
 
-[node name="cloth" type="Node3D" parent="Mesh"]
-
-[node name="cloth_2" parent="Mesh/cloth" instance=ExtResource("8_6a5p4")]
+[node name="cloth_2" parent="NavigationRegion3D/Mesh/cloth" instance=ExtResource("8_6a5p4")]
 transform = Transform3D(-4.37114e-08, 0, -0.92022, 0, 0.945028, 0, 1, 0, -4.02241e-08, -16.2325, 1.23471, -24.9537)
 
-[node name="cloth_3" parent="Mesh/cloth" instance=ExtResource("8_6a5p4")]
+[node name="cloth_3" parent="NavigationRegion3D/Mesh/cloth" instance=ExtResource("8_6a5p4")]
 transform = Transform3D(-4.37114e-08, 0, -0.92022, 0, 0.945028, 0, 1, 0, -4.02241e-08, -13.8462, 1.23471, -24.9537)
 
-[node name="cloth_6" parent="Mesh/cloth" instance=ExtResource("8_6a5p4")]
+[node name="cloth_6" parent="NavigationRegion3D/Mesh/cloth" instance=ExtResource("8_6a5p4")]
 transform = Transform3D(-4.37114e-08, 0, -0.92022, 0, 0.945028, 0, 1, 0, -4.02241e-08, -10.8462, 1.39244, -24.9537)
 
-[node name="cloth_7" parent="Mesh/cloth" instance=ExtResource("8_6a5p4")]
+[node name="cloth_7" parent="NavigationRegion3D/Mesh/cloth" instance=ExtResource("8_6a5p4")]
 transform = Transform3D(-4.37114e-08, 0, -0.92022, 0, 0.945028, 0, 1, 0, -4.02241e-08, -4.84623, 1.25187, -24.9537)
 
-[node name="cloth_4" parent="Mesh/cloth" instance=ExtResource("8_6a5p4")]
+[node name="cloth_4" parent="NavigationRegion3D/Mesh/cloth" instance=ExtResource("8_6a5p4")]
 transform = Transform3D(-4.37114e-08, 0, -0.92022, 0, 0.945028, 0, 1, 0, -4.02241e-08, 8.85436, 1.25187, -24.9537)
 
-[node name="cloth_5" parent="Mesh/cloth" instance=ExtResource("8_6a5p4")]
+[node name="cloth_5" parent="NavigationRegion3D/Mesh/cloth" instance=ExtResource("8_6a5p4")]
 transform = Transform3D(-4.37114e-08, 0, -0.92022, 0, 0.945028, 0, 1, 0, -4.02241e-08, 16.1883, 1.25187, -24.9537)
 
-[node name="cloth_8" parent="Mesh/cloth" instance=ExtResource("11_a6mvv")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.713, 1, -22.9334)
+[node name="cloth_10" parent="NavigationRegion3D/Mesh/cloth" instance=ExtResource("8_6a5p4")]
+transform = Transform3D(-1, 0, 8.04482e-08, 0, 0.945028, 0, -8.74228e-08, 0, -0.92022, 27.5408, 1.31411, 17.2548)
 
-[node name="drum" type="Node3D" parent="Mesh"]
+[node name="drum" type="Node3D" parent="NavigationRegion3D/Mesh"]
 
-[node name="drum" parent="Mesh/drum" instance=ExtResource("11_kufhj")]
+[node name="drum" parent="NavigationRegion3D/Mesh/drum" instance=ExtResource("11_kufhj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4829, 0, -22.3147)
 
-[node name="drum2" parent="Mesh/drum" instance=ExtResource("11_kufhj")]
+[node name="drum2" parent="NavigationRegion3D/Mesh/drum" instance=ExtResource("11_kufhj")]
 transform = Transform3D(0.458603, 0, 0.888641, 0, 1, 0, -0.888641, 0, 0.458603, -16.8435, 0, -21.02)
 
-[node name="drum3" parent="Mesh/drum" instance=ExtResource("11_kufhj")]
+[node name="drum3" parent="NavigationRegion3D/Mesh/drum" instance=ExtResource("11_kufhj")]
 transform = Transform3D(0.831906, 0, 0.554917, 0, 1, 0, -0.554917, 0, 0.831906, -15.5585, 0, -21.5237)
 
-[node name="drum6" parent="Mesh/drum" instance=ExtResource("11_kufhj")]
+[node name="drum6" parent="NavigationRegion3D/Mesh/drum" instance=ExtResource("11_kufhj")]
 transform = Transform3D(-3.85769e-08, 0.882537, -0.470242, -1, -4.37114e-08, 1.02933e-16, -2.05549e-08, 0.470242, 0.882538, -14.6409, 0.4, -22.9329)
 
-[node name="drum4" parent="Mesh/drum" instance=ExtResource("11_kufhj")]
+[node name="drum4" parent="NavigationRegion3D/Mesh/drum" instance=ExtResource("11_kufhj")]
 transform = Transform3D(0.952762, 0, -0.303717, 0, 1, 0, 0.303717, 0, 0.952762, -15.6549, 0, -20.2212)
 
-[node name="drum5" parent="Mesh/drum" instance=ExtResource("11_kufhj")]
+[node name="drum7" parent="NavigationRegion3D/Mesh/drum" instance=ExtResource("11_kufhj")]
+transform = Transform3D(0.673258, 0, -0.739408, 0, 1, 0, 0.739408, 0, 0.673258, -16.466, 9.53674e-07, -4.27164)
+
+[node name="drum8" parent="NavigationRegion3D/Mesh/drum" instance=ExtResource("11_kufhj")]
+transform = Transform3D(0.856303, 0, 0.516474, 0, 1, 0, -0.516474, 0, 0.856303, -17.5542, 9.53674e-07, -4.22172)
+
+[node name="drum9" parent="NavigationRegion3D/Mesh/drum" instance=ExtResource("11_kufhj")]
+transform = Transform3D(0.633232, 0, 0.773962, 0, 1, 0, -0.773962, 0, 0.633232, -17.5542, 0, -5.39403)
+
+[node name="drum10" parent="NavigationRegion3D/Mesh/drum" instance=ExtResource("11_kufhj")]
+transform = Transform3D(0.633232, 0, 0.773962, 0, 1, 0, -0.773962, 0, 0.633232, -16.3358, 0, -5.39403)
+
+[node name="drum5" parent="NavigationRegion3D/Mesh/drum" instance=ExtResource("11_kufhj")]
 transform = Transform3D(0.589634, 0, -0.807671, 0, 1, 0, 0.807671, 0, 0.589634, -16.7457, 0, -19.9173)
+
+[node name="military_box" type="Node3D" parent="NavigationRegion3D/Mesh"]
+
+[node name="wood_box" parent="NavigationRegion3D/Mesh/military_box" instance=ExtResource("14_bfvnh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.2199, 0, 1.55381)
+
+[node name="wood_box2" parent="NavigationRegion3D/Mesh/military_box" instance=ExtResource("14_bfvnh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.2199, 0.790112, 1.55381)
+
+[node name="wood_box3" parent="NavigationRegion3D/Mesh/military_box" instance=ExtResource("14_bfvnh")]
+transform = Transform3D(0.870871, 0, 0.491512, 0, 1, 0, -0.491512, 0, 0.870871, -16.433, 4.76837e-07, 2.75565)
+
+[node name="wood_box4" parent="NavigationRegion3D/Mesh/military_box" instance=ExtResource("14_bfvnh")]
+transform = Transform3D(-0.870871, 0, -0.491512, 0, 1, 0, 0.491512, 0, -0.870871, -16.433, 0.790112, 2.75565)
+
+[node name="wood_box5" parent="NavigationRegion3D/Mesh/military_box" instance=ExtResource("14_bfvnh")]
+transform = Transform3D(-0.509147, 0, 0.86068, 0, 1, 0, -0.86068, 0, -0.509147, -15.4943, 0.00895979, 1.21838)
+
+[node name="wood_box7" parent="NavigationRegion3D/Mesh/military_box" instance=ExtResource("14_bfvnh")]
+transform = Transform3D(0.668612, 0, 0.743612, 0, 1, 0, -0.743612, 0, 0.668612, 23.3199, 0.00895979, 19.5788)
+
+[node name="wood_box8" parent="NavigationRegion3D/Mesh/military_box" instance=ExtResource("14_bfvnh")]
+transform = Transform3D(0.668612, 0, 0.743612, 0, 1, 0, -0.743612, 0, 0.668612, 23.3199, 0.786773, 19.5788)
+
+[node name="wood_box9" parent="NavigationRegion3D/Mesh/military_box" instance=ExtResource("14_bfvnh")]
+transform = Transform3D(0.387065, 0, 0.922052, 0, 1, 0, -0.922052, 0, 0.387065, 24.9798, 0.00633737, 19.7508)
+
+[node name="wood_box10" parent="NavigationRegion3D/Mesh/military_box" instance=ExtResource("14_bfvnh")]
+transform = Transform3D(0.387065, 0, 0.922052, 0, 1, 0, -0.922052, 0, 0.387065, 24.9798, 0.793597, 19.7508)
+
+[node name="wood_box6" parent="NavigationRegion3D/Mesh/military_box" instance=ExtResource("14_bfvnh")]
+transform = Transform3D(-0.509147, 0, 0.86068, 0, 1, 0, -0.86068, 0, -0.509147, -16.6701, 1.64024, 2.17)
 
 [node name="Player" parent="." instance=ExtResource("1_emx41")]
 
 [node name="Camera" parent="." instance=ExtResource("2_dlwip")]
 
 [node name="TargetEffect" parent="." instance=ExtResource("3_ejll3")]
+
+[node name="mob_gen" type="Node3D" parent="."]
+
+[node name="mob_anim" parent="mob_gen" node_paths=PackedStringArray("player") groups=["mobs"] instance=ExtResource("18_o8j5v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.53703, -2.38418e-06, -4.45344)
+player = NodePath("../../Player")
+
+[node name="mob_anim2" parent="mob_gen" node_paths=PackedStringArray("player") groups=["mobs"] instance=ExtResource("18_o8j5v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.6321, -1.43051e-06, -18.7173)
+player = NodePath("../../Player")
+
+[node name="UI" type="Control" parent="." groups=["mobs", "players"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = -111.0
+offset_top = -89.0
+offset_right = 1266.0
+offset_bottom = 756.0
+color = Color(1, 0.26, 0.321667, 0.247059)
+
+[node name="TextMobCount" type="TextEdit" parent="UI"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 132.0
+offset_bottom = 57.0
+text = "Mob : 2"
+
+[node name="TextMobKill" type="TextEdit" parent="UI"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 66.0
+offset_right = 132.0
+offset_bottom = 105.0
+text = "Kill : 0"
+
+[node name="Panel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -122.0
+offset_right = 297.0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.5
+offset_top = -64.0
+offset_right = 46.5
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_ptfde")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 5.5
+offset_top = -73.0
+offset_right = 162.5
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("21_w1jyx")
+expand_mode = 1
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_opfkj")
+
+[node name="Timer_mobgen" type="Timer" parent="Path3D"]
+wait_time = 4.0
+autostart = true
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -55, 0, -22.528)
+progress = 32.472
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_7lbl5")
+volume_db = -20.0
+autoplay = true
+
+[connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
+[connection signal="timeout" from="Path3D/Timer_mobgen" to="." method="_on_timer_mobgen_timeout"]
